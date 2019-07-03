@@ -10,7 +10,13 @@ public class JDBCExecutor {
                 "hplussport", "postgres", "password");
 
         try {
+
+
             Connection connection = dcm.getConnection();
+            CustomerDAO customerDAO = new CustomerDAO(connection);
+            Customer customer = customerDAO.findById(1001);
+            System.out.println(customer.getFirstName() + " " + customer.getLastName() + " " +
+                    customer.getEmail());
 
             OrderDAO orderDAO = new OrderDAO(connection);
 
