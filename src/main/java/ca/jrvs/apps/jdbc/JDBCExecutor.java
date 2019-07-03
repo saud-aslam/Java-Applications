@@ -11,11 +11,17 @@ public class JDBCExecutor {
 
         try {
             Connection connection = dcm.getConnection();
-            CustomerDAO customerDAO = new CustomerDAO(connection);
-            Customer customer = new Customer();
-            customer.setFirstName("ma");
-            customer.setLastName("Washington");
-            customerDAO.create(customer);
+
+            OrderDAO orderDAO = new OrderDAO(connection);
+
+            Order order = orderDAO.findById(1009);
+            System.out.println(order);
+
+
+
+
+
+
 
         } catch (SQLException e) {
             e.printStackTrace();

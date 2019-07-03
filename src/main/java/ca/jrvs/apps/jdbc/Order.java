@@ -10,15 +10,17 @@ public class Order implements DataTransferObject {
     private String custFN;
     private String custLN;
     private String cust_email;
-    private Integer orderID;
+    private long orderID;
     private Date orderDate;
     private Integer orderTotalDue;
     private String orderStatus;
     private String salespersonFN;
+
+
     private String salespersonLN;
     private String salespersonEmail;
     private Integer orderQuantity;
-    private Integer prodCode;
+    private String prodCode;
     private String prodName;
     private Integer prodSize;
     private String prodVar;
@@ -72,11 +74,11 @@ public class Order implements DataTransferObject {
         this.cust_email = cust_email;
     }
 
-    public Integer getOrderID() {
+    public long getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(Integer orderID) {
+    public void setOrderID(long orderID) {
         this.orderID = orderID;
     }
 
@@ -136,11 +138,11 @@ public class Order implements DataTransferObject {
         this.orderQuantity = orderQuantity;
     }
 
-    public Integer getProdCode() {
+    public String getProdCode() {
         return prodCode;
     }
 
-    public void setProdCode(Integer prodCode) {
+    public void setProdCode(String prodCode) {
         this.prodCode = prodCode;
     }
 
