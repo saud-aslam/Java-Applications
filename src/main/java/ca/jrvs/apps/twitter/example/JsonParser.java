@@ -1,7 +1,7 @@
-package ca.jrvs.apps.twitter;
+package ca.jrvs.apps.twitter.example;
 
-import ca.jrvs.apps.twitter.dto.Company;
-import ca.jrvs.apps.twitter.dto.Financial;
+import ca.jrvs.apps.twitter.example.dto.Company;
+import ca.jrvs.apps.twitter.example.dto.Financial;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -101,8 +101,6 @@ public class JsonParser {
         Company myCompany = new Company();
         Financial myFina = new Financial();
         List<Financial> financials = new ArrayList<>();
-
-
         myCompany.setCompanyName("Jarvis");
         myCompany.setExchange("Stock_MArket");
         myFina.setCostOfRevenue(1234);
