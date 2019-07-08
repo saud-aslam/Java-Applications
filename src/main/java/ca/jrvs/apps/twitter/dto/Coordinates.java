@@ -39,4 +39,11 @@ public class Coordinates {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "coordinates=" + coordinates +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

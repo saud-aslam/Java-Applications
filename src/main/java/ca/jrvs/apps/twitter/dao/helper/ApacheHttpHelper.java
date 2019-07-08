@@ -1,16 +1,16 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
 
-import com.sun.org.apache.xml.internal.utils.URI;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
-import oauth.signpost.http.HttpResponse;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+
+import java.net.URI;
 
 
 public class ApacheHttpHelper implements HttpHelper {
@@ -34,7 +34,7 @@ public class ApacheHttpHelper implements HttpHelper {
         httpClient = new DefaultHttpClient();
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         ApacheHttpHelper apacheHttpHelper = new ApacheHttpHelper();
 
         try {
@@ -47,10 +47,10 @@ public class ApacheHttpHelper implements HttpHelper {
         }
 
 
-    }
+    }*/
 
     @Override
-    public HttpResponse httpPost(String url) throws Exception {
+    public HttpResponse httpPost(URI uri) throws Exception {
         String CONSUMER_KEY = "VSeCzfp09iTHhJ98A6dF7M8Le";
         String CONSUMER_SECRET = "wn8Pc1LiIhHgMrppig2Ss1pUPymoWgcsVbSLD9VekacJPmkiSc";
         String ACCESS_TOKEN = "1146467744860295169-ww5eOZYcJDMc2vltKSigrCxueLJPwq";
@@ -61,7 +61,7 @@ public class ApacheHttpHelper implements HttpHelper {
 
         try {
             // HttpPost post = new HttpPost(String.valueOf(uri));
-            HttpPost post = new HttpPost(url);
+            HttpPost post = new HttpPost(uri);
 
             consumer.sign(post);
 
@@ -78,13 +78,13 @@ public class ApacheHttpHelper implements HttpHelper {
 
     }
 
-    @Override
-    public HttpResponse httpPost(URI uri, StringEntity stringEntity) {
-        return null;
-    }
+    //  @Override
+    //   public HttpResponse httpPost(URI uri, StringEntity stringEntity) {
+    //  return null;
+    // }
 
     @Override
-    public HttpResponse httpGet(String url) throws Exception {
+    public HttpResponse httpGet(URI uri) throws Exception {
 
         String CONSUMER_KEY = "VSeCzfp09iTHhJ98A6dF7M8Le";
         String CONSUMER_SECRET = "wn8Pc1LiIhHgMrppig2Ss1pUPymoWgcsVbSLD9VekacJPmkiSc";
@@ -96,7 +96,7 @@ public class ApacheHttpHelper implements HttpHelper {
 
         try {
             // HttpPost post = new HttpPost(String.valueOf(uri));
-            HttpGet get = new HttpGet(url);
+            HttpGet get = new HttpGet(uri);
 
 
             consumer.sign(get);

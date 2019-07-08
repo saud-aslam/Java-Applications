@@ -140,4 +140,19 @@ public class Tweet {
         this.retweeted = retweeted;
     }
 
+    @Override
+    public String toString() {
+        return "Tweet{" +
+                "createdAt='" + createdAt + '\'' +
+                ", id=" + id +
+                ", idStr='" + idStr + '\'' +
+                ", text='" + text + '\'' +
+                ", entities=" + entities +
+                ", coordinates=" + coordinates +
+                ", retweetCount=" + retweetCount +
+                ", favoriteCount=" + favoriteCount +
+                ", favorited=" + favorited +
+                ", retweeted=" + retweeted +
+                '}';
+    }
 }

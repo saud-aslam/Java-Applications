@@ -4,6 +4,7 @@ import ca.jrvs.apps.twitter.example.dto.Company;
 import ca.jrvs.apps.twitter.example.dto.Financial;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -92,6 +93,7 @@ public class JsonParser {
                                          Class clazz) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return (T) mapper.readValue(json, clazz);
 
 
