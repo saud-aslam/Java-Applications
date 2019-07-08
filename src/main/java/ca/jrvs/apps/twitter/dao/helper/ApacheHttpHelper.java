@@ -8,7 +8,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 
 import java.net.URI;
 
@@ -103,16 +102,14 @@ public class ApacheHttpHelper implements HttpHelper {
 
             consumer.sign(get);
 
-            org.apache.http.HttpResponse response = httpClient.execute(get);
-            System.out.println(EntityUtils.toString(response.getEntity()));
-            // System.out.println(response.getStatusLine().getStatusCode());
-            response.getEntity().consumeContent();
+            response = httpClient.execute(get);
+            //response.getEntity().consumeContent();
 
 
         } finally {
 
 
         }
-        return null;
+        return response;
     }
 }

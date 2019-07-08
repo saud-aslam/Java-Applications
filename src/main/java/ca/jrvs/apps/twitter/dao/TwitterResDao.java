@@ -39,7 +39,7 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
     @Override
     public Tweet create(Tweet tweet) {
 
-        //Construct URI
+
         URI uri;
         try {
             uri = getPostUri(tweet);
@@ -48,7 +48,7 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
             throw new IllegalArgumentException("Invalid tweet input", e);
         }
 
-        //Execute HTTP Request
+
         HttpResponse response = null;
         try {
             response = httpHelper.httpPost(uri);
@@ -57,7 +57,6 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
             e.printStackTrace();
         }
 
-        //Validate response and deser response to Tweet object
         return parseResponseBody(response, HTTP_OK);
     }
 
@@ -128,12 +127,76 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
 
 
     @Override
-    public Tweet findbyId(String s) {
-        return null;
+    public Tweet findbyId(String id) {
+        //Construct URI
+        URI uri;
+        try {
+            uri = getShowUri(id);
+        } catch (URISyntaxException e) {
+            throw new IllegalArgumentException("Unable to construct URI", e);
+        }
+
+        //Execute HTTP Request
+        HttpResponse response = null;
+        try {
+            response = httpHelper.httpGet(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Validate response and deser response to Tweet object
+        return parseResponseBody(response, HTTP_OK);
     }
 
     @Override
-    public Tweet deletebyId(String s) {
-        return null;
+    public Tweet deletebyId(String id) {
+        //Construct URI
+        URI uri;
+        try {
+            uri = getDeleteUri(id);
+        } catch (URISyntaxException e) {
+            throw new IllegalArgumentException("Unable to construct URI", e);
+        }
+
+        //Execute HTTP Request
+        HttpResponse response = null;
+        try {
+            response = httpHelper.httpPost(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Validate response and deser response to Tweet object
+        return parseResponseBody(response, HTTP_OK);
+    }
+
+    /**
+     * e.g. https://api.twitter.com/1.1/statuses/destroy/240854986559455234.json
+     */
+    protected URI getDeleteUri(String id) throws URISyntaxException {
+        StringBuilder sb = new StringBuilder();
+        sb.append(BASE_URL)
+                .append(DEL_URL)
+                .append("/")
+                .append(id)
+                .append(".json");
+
+        return new URI(sb.toString());
+    }
+
+    /**
+     * Construct a twitter SHOW URI https://api.twitter.com/1.1/statuses/show.json?id=210462857140252672
+     *
+     * @throws URISyntaxException when URI is invalid
+     */
+    protected URI getShowUri(String id) throws URISyntaxException {
+        StringBuilder sb = new StringBuilder();
+        sb.append(BASE_URL)
+                .append(SHOW_URL)
+                .append(QUERY_SYM);
+        appendQueryParam(sb, "id", id, true);
+        return new URI(sb.toString());
     }
 }
+
+
