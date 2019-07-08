@@ -38,12 +38,12 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
 
     @Override
     public Tweet create(Tweet tweet) {
-        System.out.println("enter");
+
         //Construct URI
         URI uri;
         try {
             uri = getPostUri(tweet);
-            System.out.println("tryexit");
+
         } catch (URISyntaxException | UnsupportedEncodingException e) {
             throw new IllegalArgumentException("Invalid tweet input", e);
         }
@@ -52,6 +52,7 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
         HttpResponse response = null;
         try {
             response = httpHelper.httpPost(uri);
+            // System.out.println(EntityUtils.toString(response.getEntity()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,15 +64,10 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
 
     protected URI getPostUri(Tweet tweet) throws URISyntaxException, UnsupportedEncodingException {
         String text = tweet.getText();
-        // Double longitude=20.1;
-        //Double latitude=20.2;
         Double longitude = tweet.getCoordinates().getCoordinates().get(0);
         Double latitude = tweet.getCoordinates().getCoordinates().get(1);
         StringBuilder sb = new StringBuilder();
-        sb.append(BASE_URL)
-                .append(POST_URL)
-                .append(QUERY_SYM);
-
+        sb.append(BASE_URL).append(POST_URL).append(QUERY_SYM);
         appendQueryParam(sb, "status", URLEncoder.encode(text, StandardCharsets.UTF_8.name()), true);
         appendQueryParam(sb, "long", longitude.toString(), false);
         appendQueryParam(sb, "lat", latitude.toString(), false);
@@ -84,9 +80,7 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
         if (!firstParam) {
             sb.append(AMPERSAND);
         }
-        sb.append(key)
-                .append(EQUAL)
-                .append(value);
+        sb.append(key).append(EQUAL).append(value);
     }
 
 
@@ -94,13 +88,17 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
      * Check response status code Convert Response Entity to Tweet
      */
     protected Tweet parseResponseBody(HttpResponse response, Integer expectedStatusCode) {
+
         Tweet tweet = null;
 
         //Check response status
         int status = response.getStatusLine().getStatusCode();
-        if (status != expectedStatusCode) {
+        System.out.println(status);
+
+        if (status != expectedStatusCode && status != 403) {
             throw new RuntimeException("Unexpected HTTP status:" + status);
         }
+
 
         if (response.getEntity() == null) {
             throw new RuntimeException("Empty response body");
@@ -109,13 +107,17 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
         //Convert Response Entity to str
         String jsonStr;
         try {
+
             jsonStr = EntityUtils.toString(response.getEntity());
+            //System.out.println(jsonStr);
+
         } catch (IOException e) {
             throw new RuntimeException("Failed to convert entity to String", e);
         }
 
         //Deser JSON string to Tweet object
         try {
+
             tweet = (Tweet) toObjectFromJson(jsonStr, Tweet.class);
         } catch (IOException e) {
             throw new RuntimeException("Unable to convert JSON str to Object", e);

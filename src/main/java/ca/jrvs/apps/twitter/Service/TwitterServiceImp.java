@@ -22,7 +22,12 @@ public class TwitterServiceImp implements TwitterService {
     @Override
     public void postTweet(String text, Double latitude, Double longitude) {
         Tweet postTweet = joinTweet(text, latitude, longitude);
-        Tweet resp = (Tweet) dao.create(postTweet);
+
+        try {
+            Tweet resp = (Tweet) dao.create(postTweet);
+        } catch (Exception e) {
+            System.out.println("Can not post your tweet");
+        }
 
 
     }
@@ -46,7 +51,6 @@ public class TwitterServiceImp implements TwitterService {
         tweet.setCoordinates(cordn);
 
 
-        System.out.println(tweet);
         try {
             System.out.println(toJson(tweet));
         } catch (JsonProcessingException e) {
@@ -54,4 +58,5 @@ public class TwitterServiceImp implements TwitterService {
         }
         return tweet;
     }
-}
+    }
+

@@ -16,6 +16,7 @@ import java.net.URI;
 public class ApacheHttpHelper implements HttpHelper {
 
     private HttpClient httpClient;
+    org.apache.http.HttpResponse response;
 
 
     //Constructor
@@ -60,13 +61,14 @@ public class ApacheHttpHelper implements HttpHelper {
 
 
         try {
-            // HttpPost post = new HttpPost(String.valueOf(uri));
+
             HttpPost post = new HttpPost(uri);
 
             consumer.sign(post);
 
-            org.apache.http.HttpResponse response = httpClient.execute(post);
-            response.getEntity().consumeContent();
+            response = httpClient.execute(post);
+
+            //response.getEntity().consumeContent();
 
 
         } finally {
@@ -74,7 +76,7 @@ public class ApacheHttpHelper implements HttpHelper {
 
         }
 
-        return null;
+        return response;
 
     }
 

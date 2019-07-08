@@ -9,8 +9,8 @@ import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 
 public class TwitterCLI {
 
-    public static void main(String[] argssss) {
-        String[] args = {"post", "My name is Saud Aslam", "20:21"};
+    public static void main(String[] args) {
+        // String[] args = {"post", "My name is Saud Aslam", "20:21"};
         HttpHelper httpHelper = new ApacheHttpHelper();
         CrdRepo dao = new TwitterResDao(httpHelper);
         TwitterService service = new TwitterServiceImp(dao);
