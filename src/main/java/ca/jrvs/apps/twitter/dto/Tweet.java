@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.math.BigInteger;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "created_at",
@@ -22,7 +24,7 @@ public class Tweet {
     @JsonProperty("created_at")
     private String createdAt;
     @JsonProperty("id")
-    private Integer id;
+    private BigInteger id;
     @JsonProperty("id_str")
     private String idStr;
     @JsonProperty("text")
@@ -51,12 +53,12 @@ public class Tweet {
     }
 
     @JsonProperty("id")
-    public Integer getId() {
+    public BigInteger getId() {
         return id;
     }
 
     @JsonProperty("id")
-    public void setId(Integer id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 

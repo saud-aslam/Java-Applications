@@ -84,6 +84,7 @@ public class TwitterServiceImp implements TwitterService {
 
 
     public boolean idValidation(String id) {
+        return true;
 
 
     }
