@@ -6,7 +6,6 @@ import ca.jrvs.apps.twitter.dao.CrdRepo;
 public class TwitterCLIRunner {
 
 
-    private static final String sep = ":";
     public static CrdRepo dao;
     private TwitterService service;
 
@@ -20,15 +19,15 @@ public class TwitterCLIRunner {
 
 
     public void run(String[] args) {
-        if (args[0] == "post") {
+        if (args[0].compareTo("post") == 0) {
 
             parseTweet(args);
-        } else if (args[0] == "delete") {
+        } else if (args[0].compareTo("delete") == 0) {
             deleteTweet(args);
-        } else if (args[0] == "show") {
+        } else if (args[0].compareTo("show") == 0) {
             showTheTweet(args);
         } else {
-            throw new IllegalArgumentException();
+            System.out.println("Usage...post|show|delete");
         }
 
     }
@@ -42,15 +41,35 @@ public class TwitterCLIRunner {
         String text = args[1];
         String[] coord = args[2].split(":");
 
-        double lat = Double.parseDouble(coord[0]);
+        double lati = Double.parseDouble(coord[0]);
         double longi = Double.parseDouble(coord[1]);
 
         try {
-            service.postTweet(text, lat, longi);
+            service.postTweet(text, lati, longi);
         } catch (Exception e) {
             System.out.println("Can not post your tweet ");
         }
+    }
 
+
+    protected void showTheTweet(String[] args) {
+        String id = null;
+        if (args.length < 2) {
+            throw new RuntimeException("USAGE ... show|id");
+        }
+        id = args[1];
+
+        service.showTweet(id, null);
+    }
+
+
+    protected void deleteTweet(String[] args) {
+        String[] id = null;
+        if (args.length < 2) {
+            throw new RuntimeException("USAGE ... delete|id");
+        }
+        id = args[1].split(",");
+        service.deleteTweets(id);
 
     }
 
