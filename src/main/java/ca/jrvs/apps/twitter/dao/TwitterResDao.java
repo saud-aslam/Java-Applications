@@ -95,6 +95,11 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
         System.out.println(status);
 
         if (status != expectedStatusCode && status != 403) {
+            try {
+                System.out.println(EntityUtils.toString(response.getEntity()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             throw new RuntimeException("Unexpected HTTP status:" + status);
         }
 

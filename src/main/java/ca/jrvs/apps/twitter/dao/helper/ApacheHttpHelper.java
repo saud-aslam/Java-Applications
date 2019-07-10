@@ -16,7 +16,6 @@ public class ApacheHttpHelper implements HttpHelper {
 
     private HttpClient httpClient;
     org.apache.http.HttpResponse response;
-    ss
 
 
     //Constructor
