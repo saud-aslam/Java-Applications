@@ -22,7 +22,7 @@ public class TwitterServiceImp implements TwitterService {
 
 
     @Override
-    public void postTweet(String text, Double latitude, Double longitude) {
+    public Tweet postTweet(String text, Double latitude, Double longitude) {
         Tweet postTweet = joinTweet(text, latitude, longitude);
 
         try {
@@ -30,7 +30,7 @@ public class TwitterServiceImp implements TwitterService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
+        return postTweet;
 
     }
 
@@ -71,6 +71,7 @@ public class TwitterServiceImp implements TwitterService {
         tweet.setText(text);
         Coordinates cordn = new Coordinates();
         cordn.setCoordinates(Arrays.asList(lat, longi));
+        cordn.setType("Point");
         tweet.setCoordinates(cordn);
 
 
