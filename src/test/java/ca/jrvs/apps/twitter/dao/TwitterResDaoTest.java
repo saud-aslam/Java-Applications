@@ -18,11 +18,13 @@ public class TwitterResDaoTest {
     private CrdRepo dao;
     private Tweet actualTweet;
     private Tweet expectedTweet;
+    private Tweet showTweet;
     private String id;
 
 
     @Before
     public void setup() {
+        //setup actualTweet i.e createTweet
         String tweetStr = "This is tweet" + System.currentTimeMillis();
         this.actualTweet = new Tweet();
         actualTweet.setText(tweetStr);
@@ -30,7 +32,9 @@ public class TwitterResDaoTest {
         coordinates.setType("Point");
         coordinates.setCoordinates(Arrays.asList(10.0, 20.0));
         actualTweet.setCoordinates(coordinates);
-
+        //Setup showTweet
+        this.showTweet = new Tweet();
+        //setup dao
         HttpHelper httpHelper = new ApacheHttpHelper();
         this.dao = new TwitterResDao(httpHelper);
 
@@ -48,19 +52,25 @@ public class TwitterResDaoTest {
         }
 
         //Validate tweet Object
-        assertNotNull(expectedTweet);
-        assertEquals(expectedTweet.getText(), actualTweet.getText());
-        assertEquals(expectedTweet.getCoordinates(), actualTweet.getCoordinates());
-        //Testing ShowTweet
-        this.id = expectedTweet.getIdStr();
-        Tweet showTweet = null;
-        showTweet = (Tweet) dao.findbyId(this.id);
+        assertStatement(actualTweet, expectedTweet);
 
-        assertEquals(showTweet.getText(), actualTweet.getText());
-        assertEquals(actualTweet.getText(), showTweet.getText());
+        //getting id of the expectedTweet
+        this.id = expectedTweet.getIdStr();
+
+        this.showTweet = (Tweet) dao.findbyId(this.id);
+
+        //Validating ShowTweet
+        assertStatement(actualTweet, showTweet);
 
 
     }
 
-    
+    public void assertStatement(Tweet actual, Tweet expected) {
+        assertEquals(actual.getText(), expected.getText());
+        assertEquals(actual.getCoordinates(), expected.getCoordinates());
+        assertNotNull(expected);
+
+    }
+
+
 }
