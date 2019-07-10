@@ -21,7 +21,7 @@ public class TwitterCLIRunner {
     public void run(String[] args) {
         if (args[0].compareTo("post") == 0) {
 
-            parseTweet(args);
+            parseAndPost(args);
         } else if (args[0].compareTo("delete") == 0) {
             deleteTweet(args);
         } else if (args[0].compareTo("show") == 0) {
@@ -33,8 +33,9 @@ public class TwitterCLIRunner {
     }
 
 
-    protected void parseTweet(String[] args) {
+    protected void parseAndPost(String[] args) {
         if (args.length != 3) {
+
             throw new RuntimeException("USAGE ... post|text|lat:lon");
         }
 
@@ -46,8 +47,8 @@ public class TwitterCLIRunner {
 
         try {
             service.postTweet(text, lati, longi);
-        } catch (Exception e) {
-            System.out.println("Can not post your tweet ");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 

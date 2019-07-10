@@ -27,8 +27,8 @@ public class TwitterServiceImp implements TwitterService {
 
         try {
             Tweet resp = (Tweet) dao.create(postTweet);
-        } catch (Exception e) {
-            System.out.println("Can not post your tweet");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
 
 
@@ -64,7 +64,7 @@ public class TwitterServiceImp implements TwitterService {
     public Tweet joinTweet(String text, Double lat, Double longi) {
 
         if (text.length() > MAX_LEN_TWEET || lat > 90.0 || longi > 180.0 || lat < -90.0 || longi < -180.0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Arguments has some problem");
         }
 
         Tweet tweet = new Tweet();
