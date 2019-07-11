@@ -14,6 +14,10 @@ public class TwitterServiceImp implements TwitterService {
 
 
     private static final int MAX_LEN_TWEET = 200;
+    private static final double MAX_LAT = 90.0;
+    private static final double MIN_LAT = -90.0;
+    private static final double MAX_LONGI = 180.0;
+    private static final double MIN_LONGI = -180.0;
     private CrdRepo dao;
 
     public TwitterServiceImp(CrdRepo dao) {
@@ -36,6 +40,10 @@ public class TwitterServiceImp implements TwitterService {
 
     @Override
     public void showTweet(String id, String[] fields) {
+
+        if (!idValidation(id)) {
+            throw new IllegalArgumentException("ID should be all numbers");
+        }
         try {
             Tweet resp = (Tweet) dao.findbyId(id);
             System.out.println(toJson(resp));
@@ -50,6 +58,9 @@ public class TwitterServiceImp implements TwitterService {
     @Override
     public void deleteTweets(String[] id) {
         for (String i : id) {
+            if (!idValidation(i)) {
+                throw new IllegalArgumentException("ID should be all numbers");
+            }
             try {
                 Tweet resp = (Tweet) dao.deletebyId(i);
                 System.out.println(toJson(resp));
@@ -63,9 +74,15 @@ public class TwitterServiceImp implements TwitterService {
 
     public Tweet joinTweet(String text, Double lat, Double longi) {
 
-        if (text.length() > MAX_LEN_TWEET || lat > 90.0 || longi > 180.0 || lat < -90.0 || longi < -180.0) {
-            throw new IllegalArgumentException("Arguments has some problem");
+        if (text.toCharArray().length > MAX_LEN_TWEET) {
+            throw new IllegalArgumentException("Maximum length of Tweet allowed is 200: You have posted: " + text.length());
         }
+
+        if (lat > MAX_LAT || longi > MAX_LONGI || lat < MIN_LAT || longi < MIN_LONGI) {
+            throw new IllegalArgumentException("Geo Location is Invalid:ALlowed 90|-90|180|-180. You posted:" + lat + "|" + longi);
+        }
+
+
 
         Tweet tweet = new Tweet();
         tweet.setText(text);
@@ -84,10 +101,8 @@ public class TwitterServiceImp implements TwitterService {
     }
 
 
-    public boolean idValidation(String id) {
-        return true;
-
-
+    public boolean idValidation(String s) {
+        return s != null && s.chars().noneMatch(character -> character < '0' || character > '9');
     }
 }
 

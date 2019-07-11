@@ -5,6 +5,7 @@ import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dto.Coordinates;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,6 +39,14 @@ public class TwitterResDaoTest {
         HttpHelper httpHelper = new ApacheHttpHelper();
         this.dao = new TwitterResDao(httpHelper);
 
+    }
+
+
+    @After
+    public void cleanup() {
+        System.out.println("Deleting " + this.id);
+        //remove tweet
+        dao.deletebyId(this.id);
     }
 
     @Test
