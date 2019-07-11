@@ -22,7 +22,6 @@ public class TwitterCLIRunner {
 
     public void run(String[] args) {
         if (args[0].compareTo("post") == 0) {
-
             parseAndPost(args);
         } else if (args[0].compareTo("delete") == 0) {
             deleteTweet(args);
@@ -36,13 +35,11 @@ public class TwitterCLIRunner {
 
     protected void parseAndPost(String[] args) {
         if (args.length != 3) {
-
             throw new RuntimeException("USAGE ... post|text|lat:lon");
         }
 
         String text = args[1];
         String[] coord = args[2].split(":");
-
         double lati = Double.parseDouble(coord[0]);
         double longi = Double.parseDouble(coord[1]);
 
@@ -59,7 +56,6 @@ public class TwitterCLIRunner {
             throw new RuntimeException("USAGE ... show|id");
         }
         id = args[1];
-
         service.showTweet(id, null);
     }
 

@@ -66,7 +66,6 @@ public class JavaGrepImp implements JavaGrep {
     public void process() throws IOException {
 
         List<File> files = listFiles(this.getRootPath());
-
         ArrayList<String> matchedLines = new ArrayList<>();
         List<String> lineFromFiles;
 
@@ -84,6 +83,7 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public List<File> listFiles(String rootDir) {
+
         File folder = new File(rootDir);
         File[] listOfFiles = folder.listFiles();
         List<File> results = new ArrayList<>();
@@ -98,9 +98,7 @@ public class JavaGrepImp implements JavaGrep {
                 results.add(fileE);
             } else if (fileE.isDirectory()) {
                 results.addAll(listFiles(fileE.getAbsolutePath()));
-
             }
-
         }
         return results;
     }
@@ -114,7 +112,6 @@ public class JavaGrepImp implements JavaGrep {
     public List<String> readLines(File inputFile) throws IOException {
 
         ArrayList<String> lines = new ArrayList<>();
-
         BufferedReader br = new BufferedReader(new FileReader(inputFile));
         try {
             String line;
@@ -125,7 +122,6 @@ public class JavaGrepImp implements JavaGrep {
             br.close();
             return lines;
         }
-
     }
 
     public List<String> LambdaReadLines(File file) throws IOException {
@@ -135,7 +131,6 @@ public class JavaGrepImp implements JavaGrep {
     @Override
     public Boolean containsPattern(String line) {
         return line.matches(this.getRegex());
-
     }
 
     @Override
@@ -145,11 +140,8 @@ public class JavaGrepImp implements JavaGrep {
         for (String line : lines) {
             writer.write(line);
         }
-
         writer.close();
-
     }
-
 }
 
 

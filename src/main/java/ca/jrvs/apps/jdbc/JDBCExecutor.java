@@ -18,7 +18,6 @@ public class JDBCExecutor {
                     customer.getEmail());
 
             OrderDAO orderDAO = new OrderDAO(connection);
-
             Order order = orderDAO.findById(1009);
             System.out.println(order);
 

@@ -39,9 +39,7 @@ public class ApacheHttpHelper implements HttpHelper {
         try {
 
             HttpPost post = new HttpPost(uri);
-
             consumer.sign(post);
-
             return httpClient.execute(post);
 
         } catch (IOException | OAuthException e) {
