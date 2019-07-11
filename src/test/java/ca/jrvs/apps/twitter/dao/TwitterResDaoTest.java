@@ -22,7 +22,6 @@ public class TwitterResDaoTest {
     private Tweet showTweet;
     private String id;
 
-
     @Before
     public void setup() {
         //setup actualTweet i.e createTweet
@@ -41,7 +40,6 @@ public class TwitterResDaoTest {
 
     }
 
-
     @After
     public void cleanup() {
         System.out.println("Deleting " + this.id);
@@ -51,7 +49,6 @@ public class TwitterResDaoTest {
 
     @Test
     public void createAndshow() {
-
 
         this.expectedTweet = (Tweet) dao.create(actualTweet);
         try {
@@ -71,7 +68,6 @@ public class TwitterResDaoTest {
         //Validating ShowTweet
         assertStatement(actualTweet, showTweet);
 
-
     }
 
     public void assertStatement(Tweet actual, Tweet expected) {
@@ -80,6 +76,5 @@ public class TwitterResDaoTest {
         assertNotNull(expected);
 
     }
-
 
 }

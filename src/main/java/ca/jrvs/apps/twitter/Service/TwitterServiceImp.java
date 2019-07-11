@@ -14,7 +14,6 @@ import static ca.jrvs.apps.twitter.example.JsonParser.toJson;
 @Component
 public class TwitterServiceImp implements TwitterService {
 
-
     private static final int MAX_LEN_TWEET = 200;
     private static final double MAX_LAT = 90.0;
     private static final double MIN_LAT = -90.0;
@@ -26,7 +25,6 @@ public class TwitterServiceImp implements TwitterService {
     public TwitterServiceImp(CrdRepo dao) {
         this.dao = dao;
     }
-
 
     @Override
     public Tweet postTweet(String text, Double latitude, Double longitude) {
@@ -54,8 +52,6 @@ public class TwitterServiceImp implements TwitterService {
             System.out.println("Can not show your tweet");
         }
 
-
-
     }
 
     @Override
@@ -74,7 +70,6 @@ public class TwitterServiceImp implements TwitterService {
 
     }
 
-
     public Tweet joinTweet(String text, Double lat, Double longi) {
 
         if (text.toCharArray().length > MAX_LEN_TWEET) {
@@ -85,15 +80,12 @@ public class TwitterServiceImp implements TwitterService {
             throw new IllegalArgumentException("Geo Location is Invalid:ALlowed 90|-90|180|-180. You posted:" + lat + "|" + longi);
         }
 
-
-
         Tweet tweet = new Tweet();
         tweet.setText(text);
         Coordinates cordn = new Coordinates();
         cordn.setCoordinates(Arrays.asList(lat, longi));
         cordn.setType("Point");
         tweet.setCoordinates(cordn);
-
 
         try {
             System.out.println(toJson(tweet));
@@ -102,7 +94,6 @@ public class TwitterServiceImp implements TwitterService {
         }
         return tweet;
     }
-
 
     public boolean idValidation(String s) {
         return s != null && s.chars().noneMatch(character -> character < '0' || character > '9');

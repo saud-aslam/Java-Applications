@@ -7,7 +7,6 @@ import java.util.Properties;
 
 public class DataConnectionManager {
 
-
     private final String url;
     private final Properties properties;
 

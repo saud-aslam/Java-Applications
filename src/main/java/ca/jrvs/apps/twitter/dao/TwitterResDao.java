@@ -27,7 +27,6 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
     private static final String AMPERSAND = "&";
     private static final String EQUAL = "=";
 
-
     private static final int HTTP_OK = 200;
 
     private HttpHelper httpHelper;
@@ -37,10 +36,8 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
         this.httpHelper = httpHelper;
     }
 
-
     @Override
     public Tweet create(Tweet tweet) {
-
 
         URI uri;
         try {
@@ -49,7 +46,6 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
         } catch (URISyntaxException | UnsupportedEncodingException e) {
             throw new IllegalArgumentException("Invalid tweet input", e);
         }
-
 
         HttpResponse response = null;
         try {
@@ -61,7 +57,6 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
 
         return parseResponseBody(response, HTTP_OK);
     }
-
 
     protected URI getPostUri(Tweet tweet) throws URISyntaxException, UnsupportedEncodingException {
         String text = tweet.getText();
@@ -84,7 +79,6 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
         sb.append(key).append(EQUAL).append(value);
     }
 
-
     /**
      * Check response status code Convert Response Entity to Tweet
      */
@@ -104,7 +98,6 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
             }
             throw new RuntimeException("Unexpected HTTP status:" + status);
         }
-
 
         if (response.getEntity() == null) {
             throw new RuntimeException("Empty response body");
@@ -131,7 +124,6 @@ public class TwitterResDao implements CrdRepo<Tweet, String> {
 
         return tweet;
     }
-
 
     @Override
     public Tweet findbyId(String id) {

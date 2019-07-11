@@ -11,7 +11,6 @@ public class JDBCExecutor {
 
         try {
 
-
             Connection connection = dcm.getConnection();
             CustomerDAO customerDAO = new CustomerDAO(connection);
             Customer customer = customerDAO.findById(1001);
@@ -23,17 +22,10 @@ public class JDBCExecutor {
             Order order = orderDAO.findById(1009);
             System.out.println(order);
 
-
-
-
-
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
-
 
 }
