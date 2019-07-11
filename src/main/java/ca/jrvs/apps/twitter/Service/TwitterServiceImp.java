@@ -4,12 +4,14 @@ import ca.jrvs.apps.twitter.dao.CrdRepo;
 import ca.jrvs.apps.twitter.dto.Coordinates;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
 import static ca.jrvs.apps.twitter.example.JsonParser.toJson;
 
-
+@Component
 public class TwitterServiceImp implements TwitterService {
 
 
@@ -20,6 +22,7 @@ public class TwitterServiceImp implements TwitterService {
     private static final double MIN_LONGI = -180.0;
     private CrdRepo dao;
 
+    @Autowired
     public TwitterServiceImp(CrdRepo dao) {
         this.dao = dao;
     }

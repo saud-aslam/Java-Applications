@@ -1,19 +1,20 @@
 package ca.jrvs.apps.grep;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JavaGrepImp implements JavaGrep {
-
 
     private String regex;
     private String outFile;
     private String rootPath;
 
-
     public static void main(String[] args) {
-
 
         if (args.length != 3) {
             throw new IllegalArgumentException("USAGE: regex rootPath outFile");
@@ -66,10 +67,8 @@ public class JavaGrepImp implements JavaGrep {
 
         List<File> files = listFiles(this.getRootPath());
 
-
         ArrayList<String> matchedLines = new ArrayList<>();
         List<String> lineFromFiles;
-
 
         for (File file : files) {
             lineFromFiles = readLines(file);
@@ -79,12 +78,9 @@ public class JavaGrepImp implements JavaGrep {
                     matchedLines.add(line);
                 }
             }
-
-
         }
         writeToFile(matchedLines);
     }
-
 
     @Override
     public List<File> listFiles(String rootDir) {
@@ -92,12 +88,10 @@ public class JavaGrepImp implements JavaGrep {
         File[] listOfFiles = folder.listFiles();
         List<File> results = new ArrayList<>();
 
-
         if (listOfFiles == null) {
             results.add(folder);
             return results;
         }
-
 
         for (File fileE : listOfFiles) {
             if (fileE.isFile()) {
@@ -111,12 +105,15 @@ public class JavaGrepImp implements JavaGrep {
         return results;
     }
 
+    public List<File> LambdaLisFiles(String rootPath) throws IOException {
+        return Files.walk(Paths.get(rootPath)).filter(Files::isRegularFile).map(Path::toFile)
+                .collect(Collectors.toList());
+    }
 
     @Override
     public List<String> readLines(File inputFile) throws IOException {
 
         ArrayList<String> lines = new ArrayList<>();
-
 
         BufferedReader br = new BufferedReader(new FileReader(inputFile));
         try {
@@ -129,7 +126,10 @@ public class JavaGrepImp implements JavaGrep {
             return lines;
         }
 
+    }
 
+    public List<String> LambdaReadLines(File file) throws IOException {
+        return Files.lines(Paths.get(file.getPath())).collect(Collectors.toList());
     }
 
     @Override
@@ -137,7 +137,6 @@ public class JavaGrepImp implements JavaGrep {
         return line.matches(this.getRegex());
 
     }
-
 
     @Override
     public void writeToFile(List<String> lines) throws IOException {
@@ -149,9 +148,7 @@ public class JavaGrepImp implements JavaGrep {
 
         writer.close();
 
-
     }
-
 
 }
 

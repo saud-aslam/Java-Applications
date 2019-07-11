@@ -2,9 +2,11 @@ package ca.jrvs.apps.twitter;
 
 import ca.jrvs.apps.twitter.Service.TwitterService;
 import ca.jrvs.apps.twitter.dao.CrdRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TwitterCLIRunner {
-
 
     public static CrdRepo dao;
     private TwitterService service;
@@ -13,10 +15,10 @@ public class TwitterCLIRunner {
         this.dao = dao;
     }
 
+    @Autowired
     public TwitterCLIRunner(TwitterService service) {
         this.service = service;
     }
-
 
     public void run(String[] args) {
         if (args[0].compareTo("post") == 0) {
@@ -31,7 +33,6 @@ public class TwitterCLIRunner {
         }
 
     }
-
 
     protected void parseAndPost(String[] args) {
         if (args.length != 3) {
@@ -52,7 +53,6 @@ public class TwitterCLIRunner {
         }
     }
 
-
     protected void showTheTweet(String[] args) {
         String id = null;
         if (args.length < 2) {
@@ -62,7 +62,6 @@ public class TwitterCLIRunner {
 
         service.showTweet(id, null);
     }
-
 
     protected void deleteTweet(String[] args) {
         String[] id = null;
