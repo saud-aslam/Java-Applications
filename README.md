@@ -34,6 +34,7 @@ Similar to : egrep -r {regex} {rootpath} &gt; {outFile}
 <p>This is a JDBC application which has data about customers, salesperson and orders stored in a relational database. In this application create, read, update, delete (CRUD) functionalities has been implemented.</p>
 <h2 id="design-and-implementation-1">Design and Implementation</h2>
 <p>This project has been implemented with cleint server architecture as it is shown in diagram below.</p>
+<img src="/diagrams/jdbc.png" alt="Server-host"></p>
 <ul>
 <li>Configure Connection with database</li>
 <li>Transfer request to dao layer with the use of dto object</li>
