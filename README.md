@@ -4,24 +4,25 @@
 ---
 
 <h1 id="introduction">Introduction</h1>
-<p>This repository includes three Java applications which has been build and packages in Maven structure.</p>
+<p>This repository includes three Java applications namely Java Grep App, JDBC App and Twitter CLI App. </p>
 <h1 id="java-grep-app">Java Grep App</h1>
 <p>This App searches for a text pattern recursively in a given directory, and output matched lines to a file. The app takes three arguments.</p>
 <h2 id="usage">Usage</h2>
 <pre><code>How To Use:  regex rootPath outFile
-Similar to : egrep -r {regex} {rootpath} &gt; {outFile}
+Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 
 </code></pre>
 <ul>
-<li>regex: a string of characters for describing the search pattern</li>
+<li>regex: a string on which search would be performed</li>
 <li>rootpath: path of the directory</li>
-<li>outFuile: path to output file and the anme of file</li>
+<li>outFuile: path and name of output file where output search result would be stored</li>
 </ul>
+
 <h2 id="design-and-implementation">Design and Implementation</h2>
-<p><strong>GrepApp:</strong>  is an interface where all the necessary methods have been declared.<br>
-<strong>GrepAppImp:</strong>  is a the class taht includes the main method and implements GrepApp interface. This class implements listfiles and readlines method using Java 7 and 8 methods.</p>
+<p><strong>JavaGrep:</strong>  is an interface where abstraction of method used in JavaGrepApp is provided.<br>
+<strong>JavaGrepApp:</strong>  In this class, main method is called in which the arguments are intially set into JavaGrepImp's object and then the method <strong>process</strong> is called. This method then calls other method such as listFiles, readLines, containsPattern and writeToFile. The pseudocode is as follows:</p>
 <ul>
-<li>Walk through all fiels and folders of the directory add them to List</li>
+<li>Walk through all folders of the input directory and add them to List</li>
 <li>item If it is a directory open the directory and add all the files in a files list</li>
 <li>read all lines of a file to a list</li>
 <li>compare regex with stored lines store matched lines in a list and write in a file</li>
@@ -30,6 +31,14 @@ Similar to : egrep -r {regex} {rootpath} &gt; {outFile}
 <ol>
 <li>Add a feature where every line will be returned with the path of its file to make finding the file easy.</li>
 </ol>
+
+<h2 id="libraries">Libraries</h2>
+<ul>
+<li>FileWriter</li>
+<li>BufferedWriter</li>
+<li>PrintWriter</li>
+</ul>
+
 <h1 id="jdbc-app">JDBC App</h1>
 <p>This is a JDBC application which has data about customers, salesperson and orders stored in a relational database. In this application create, read, update, delete (CRUD) functionalities has been implemented.</p>
 <h2 id="design-and-implementation-1">Design and Implementation</h2>
