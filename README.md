@@ -81,8 +81,9 @@ object.
 
 
 </code></pre>
-<p>##Design and Implementation</p>
+<p>## Design and Implementation</p>
 <p>The archtecture of this program is similar to client server architecture where the Twitter REST API is the server.</p>
+<img src="/diagrams/twitter.png" alt="Server-host"></p>
 <p>TwitterCLIRunner initializes the application. It gets the user input and passes it to service layer where all business logic will be checked , after passing the tests the requets would be send to TwitterRestDAo layer with the help of DTO objects. after executing the request, http response will be send back and displayed to user in jason format.</p>
 <ul>
 <li>ApacheHttpHelper class is in the lowest level and implaments HttpHelper interface. This class creates connection with the REST Api, passes the request and receives the the http response.</li>
