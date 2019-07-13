@@ -22,10 +22,10 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 <p><strong>JavaGrep:</strong>  is an interface where abstraction of method used in JavaGrepApp is provided.<br>
 <strong>JavaGrepApp:</strong>  In this class, main method is called in which the arguments are intially set into JavaGrepImp's object and then the method <strong>process</strong> is called. This method then calls other method such as listFiles, readLines, containsPattern and writeToFile. The pseudocode is as follows:</p>
 <ul>
-<li>Walk through all folders of the input directory and add them to List</li>
-<li>item If it is a directory open the directory and add all the files in a files list</li>
-<li>read all lines of a file to a list</li>
-<li>compare regex with stored lines store matched lines in a list and write in a file</li>
+<li>Walk through all folders of the input directory and search for file path and if found sub directory, invoke listFiles recursively, until pure file path found, and add them to List.</li>
+<li>Scan all lines in a file and output it as a list of string.</li>
+<li>Compare all text in list of String to regex.</li>
+ <li>Output matched string to an output file.</li>
 </ul>
 <h2 id="enhancement-and-issues">Enhancement and Issues</h2>
 <ol>
@@ -40,9 +40,19 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 </ul>
 
 <h1 id="jdbc-app">JDBC App</h1>
-<p>This is a JDBC application which has data about customers, salesperson and orders stored in a relational database. In this application create, read, update, delete (CRUD) functionalities has been implemented.</p>
+<p>This App helps the user to perform CRUD (Create, Read, Update and Delete) operations in PostgreSQL database.</p>
 <h2 id="design-and-implementation-1">Design and Implementation</h2>
-<p>This project has been implemented with cleint server architecture as it is shown in diagram below.</p>
+<p>To connect the Database Storage layer with Java, Client/Server connection is used. The diagrram below shows the design of this project.</p>
+
+<h2 id="usage1">Usage</h2>
+<ul>
+<li>Create new table : <pre><code>JDBCExector create "ID" "First_Name" "Address"</code></pre></li>
+ <li>Find a data base on ID parameter : <pre><code>JDBCExector read "ID" </code></pre></li>
+ <li>Create new table : <pre><code>JDBCExector JDBCExector delete "ID"</code></pre></li>
+ </ul>
+
+
+
 <img src="/diagrams/jdbc.png" alt="Server-host"></p>
 <ul>
 <li>Configure Connection with database</li>
