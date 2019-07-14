@@ -72,6 +72,20 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 
 <h2 id="setup">Initial Setup</h2>
 After creating an application on Twitter Developer account, get access to keys and tokens. Setup those tokens and keys in your local machine environment variables. For example:
+<pre><code>
+#put the following env var in ~/.bash_profile
+export consumerKey=
+export consumerSecret=
+export accessToken=
+export tokenSecret=
+$ source ~/.bash_profile
+
+</code></pre>
+
+
+
+
+<h2 id="usage-1">Usage</h2>
 
 <pre><code>To Post a Tweet: TwitterCLI post "Tweet_text" "latitude:longitude"
 
@@ -83,17 +97,6 @@ in JSON format.
 </code></pre>
 
 
-<h2 id="usage-1">Usage</h2>
-
-<pre><code>
-#put the following env var in ~/.bash_profile
-export consumerKey=
-export consumerSecret=
-export accessToken=
-export tokenSecret=
-$ source ~/.bash_profile
-
-</code></pre>
 <pre><code>To show a tweet: TwitterCLI show  Tweet-Id
 
 Description: Lookup a tweet by ID and print the
