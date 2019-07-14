@@ -19,7 +19,7 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 <p><strong>JavaGrep:</strong>  is an interface where abstraction of method used in JavaGrepApp is provided.<br>
 <strong>JavaGrepApp:</strong>  In this class, main method is called in which the arguments are intially set into JavaGrepImp's object and then the method <strong>process</strong> is called. This method then calls other method such as listFiles, readLines, containsPattern and writeToFile. The pseudocode is as follows:</p>
 <ul>
-<li>Walk through all folders of the input directory and search for file path and if found sub directory, invoke listFiles recursively, until pure file path found, and add them to List.</li>
+<li>Scan through all folders of the input directory and search for file path and if found sub directory, invoke listFiles recursively, until pure file path found, and add them to List.</li>
 <li>Scan all lines in a file and output it as a list of string.</li>
 <li>Compare all text in list of String to regex.</li>
  <li>Output matched string to an output file.</li>
