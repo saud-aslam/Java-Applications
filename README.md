@@ -69,14 +69,29 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 
 <h1 id="twitter-cli-app">Twitter CLI App</h1>
 <p>This Application allows user to Post, Delete and show Tweets through command line.</p>
-<h2 id="usage-1">Usage</h2>
-<p>Firstly, authorization component should be setup as environmental variables.</p>
+
+<h2 id="setup">Initial Setup</h2>
+After creating an application on Twitter Developer account, get access to keys and tokens. Setup those tokens and keys in your local machine environment variables. For example:
+
 <pre><code>To Post a Tweet: TwitterCLI post "Tweet_text" "latitude:longitude"
 
 
 Description: Create a tweet with a geotag and
 output the created tweet object(simplifeid version)
 in JSON format.
+
+</code></pre>
+
+
+<h2 id="usage-1">Usage</h2>
+
+<pre><code>
+#put the following env var in ~/.bash_profile
+export consumerKey=
+export consumerSecret=
+export accessToken=
+export tokenSecret=
+$ source ~/.bash_profile
 
 </code></pre>
 <pre><code>To show a tweet: TwitterCLI show  Tweet-Id
@@ -102,13 +117,14 @@ object.
 
 
 <li><strong>TwitterCLI</strong> This class manages dependencies and pass the arguments to TwitterCLIRunner so that the application is run.</li>
+<h2 id="sp">Spring Framework</h2>
 
 </ul>
-<p>Inaddition to traditional way, dependencies of this app has been managed using spring framework.</p>
+<p>Dependencies of different layers within the application is also shown to be managed by Spring Framework. Three different approaches are used namely Spring Bean, Spring Component Scan and Spring Boot.</p>
 <ol>
-<li>Spring Bean Appraoch: under spring package TwitterCliBean calss creats java beans for different components of the Apps and sets up configuration.</li>
-<li>Spring Annotation Approach: TwitterCliSpringAnnotaion create annotation by using in-line @component annotation to add classes to IoC.</li>
-<li>Spring Boot Approach: TwitterCliSpringBoot uses spring framework to manage dependencies but reduces configuration significantly.</li>
+<li><strong>Spring Bean</strong>:<strong>TwitterCLIBean</strong> class setup or configures different components of the application by using java beans components as its building blocks.</li>
+<li><strong>Spring Annotation</strong>: Rather than explicitly annotating beans, we can create @compnent annonation in the classes which are supposed to be added in dependencies for the application to run in IoC. This is done in  <strong>TwitterCLIComponentScan</strong> class.</li>
+<li><strong>Spring Boot<strong/>:<strong>TwitterCLISpringBoot</strong> class uses spring framework auto configuration mode to manage dependencies automatically without much configurations to be done manually.</li>
 </ol>
 <h3 id="test">Test</h3>
 <p>TwitterCli App was tested with Junit test and mockito tets cases.<br>
