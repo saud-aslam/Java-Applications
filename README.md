@@ -43,7 +43,7 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 <ul>
 <li>Create new table : <pre><code>JDBCExecutor create "ID" "First_Name" "Address"</code></pre></li>
  <li>Find a data base on ID parameter : <pre><code>JDBCExecutor read "ID" </code></pre></li>
- <li>Create new table : <pre><code>JDBCExector JDBCExecutor delete "ID"</code></pre></li>
+ <li>Create new table : <pre><code>JDBCExecutor delete "ID"</code></pre></li>
  </ul>
 <h2 id="design-and-implementation-1">Design and Implementation</h2>
 <p>To connect the Database Storage layer with Java, Client/Server connection is used. The diagram below shows the design of this project.</p>
