@@ -47,8 +47,7 @@ public class JDBCExecutor {
                     break;
                 case "delete":
                     new CustomerDAO(connection).delete(Long.getLong(args[1]));
-                    System.out.println("Data Deleted");
-                    break;
+                 break;
                 default:
                     System.out.println("Usage: create|update|read|order|delete");
             } catch (SQLException e) {
