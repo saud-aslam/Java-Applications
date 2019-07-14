@@ -15,7 +15,7 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 <ul>
 <li>regex: a string on which search would be performed</li>
 <li>rootpath: path of the directory</li>
-<li>outFuile: path and name of output file where output search result would be stored</li>
+<li>outFile: path and name of output file where output search result would be stored</li>
 </ul>
 
 <h2 id="design-and-implementation">Design and Implementation</h2>
@@ -66,8 +66,6 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 
 <h2 id="libraries">Libraries</h2>
 <ul>
-<li>FileWriter</li>
-<li>BufferedWriter</li>
 <li>Postgresql</li>
 </ul>
 
