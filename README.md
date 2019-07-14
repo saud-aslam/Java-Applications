@@ -1,7 +1,4 @@
----
 
-
----
 
 <h1 id="introduction">Introduction</h1>
 <p>This repository includes three Java applications namely Java Grep App, JDBC App and Twitter CLI App. </p>
