@@ -26,7 +26,9 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 </ul>
 <h2 id="enhancement-and-issues">Enhancement and Issues</h2>
 <ol>
-<li>Add a feature where every line will be returned with the path of its file to make finding the file easy.</li>
+<li>readLines saves the entire content of every file in memory which means that large files would be entirely written in memory. Improvement could be to simultenously read and match regex and only store matched lines in memory or directly append it into output file.</li>
+<li>Multiple regex patterns not supported now. Could be added in later versions.</li>
+ <li>Every file in input directory is scanned. Maybe add a filter to escape few formats e.g filter to not scan .xml files.</li>
 </ol>
 
 <h2 id="libraries">Libraries</h2>
@@ -130,12 +132,12 @@ object.
 <li><strong>Spring Boot</strong>:<strong>TwitterCLISpringBoot</strong> class uses spring framework auto configuration mode to manage dependencies automatically without much configurations to be done manually.</li>
 </ol>
 <h3 id="test">Test</h3>
-<p>TwitterCli App was tested with Junit test and mockito tets cases.<br>
-TwitterREstDao class was tested with Junit, fucntionalities such as Create, FindByID, adn deleteByID was tested.<br>
-Mockito was used to create unit test cases for service leyer.</p>
+<p>Mockito testing framework was used to perform unit testing on twitter service layer by mocking DAO layer. Dao layer i.e TwitterResDAO module went through Junit tests cases on Create, findbyId and deletebyId methods in the Dao layer.</p>
 <h2 id="enhancement-and-issues-1">Enhancement and Issues</h2>
 <ol>
-<li>Implementig the funcitonality to post media.</li>
+<li>Search by ID and Delete by ID can be cumbersome, rather possible improvement could be to get a list of all tweets maybe by searching hashtags or text and then delete them with interactive mode. </li>
+ <li>Posting is only with text now, but can add links, images and videos.</li>
+ <li>Prompt the user, if the access tokens are not formatted or invalid.</li>
 </ol>
 <h2 id="libraries">Libraries</h2>
 <ul>
