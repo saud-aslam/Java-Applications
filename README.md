@@ -41,8 +41,6 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 
 <h1 id="jdbc-app">JDBC App</h1>
 <p>This App helps the user to perform CRUD (Create, Read, Update and Delete) operations in PostgreSQL database.</p>
-<h2 id="design-and-implementation-1">Design and Implementation</h2>
-<p>To connect the Database Storage layer with Java, Client/Server connection is used. The diagrram below shows the design of this project.</p>
 
 <h2 id="usage1">Usage</h2>
 <ul>
@@ -50,29 +48,29 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
  <li>Find a data base on ID parameter : <pre><code>JDBCExector read "ID" </code></pre></li>
  <li>Create new table : <pre><code>JDBCExector JDBCExector delete "ID"</code></pre></li>
  </ul>
-
-
-
+<h2 id="design-and-implementation-1">Design and Implementation</h2>
+<p>To connect the Database Storage layer with Java, Client/Server connection is used. The diagram below shows the design of this project.</p>
 <img src="/diagrams/jdbc.png" alt="Server-host"></p>
 <ul>
-<li>Configure Connection with database</li>
-<li>Transfer request to dao layer with the use of dto object</li>
-<li>execute the request in dao layer</li>
-<li>update the database</li>
-<li>return results back to user</li>
+<li>DatabaseConnectionManager communicates with Database server through JDBC ie. java.sql library component</li>
+<li>CustomerDAO/OrderDAO are classes which extends DataAccessObject interface. These classes execute the SQL queries, saves the output of the queries and then handles customerDto/orderDto</li>
+<li>Dto objects (order/customer) are java representation of database tables. They are manipulated by DAO layer.</li>
+<li>JDBCExector has the main method which receives user input, initialized other layer and execute the program. </li>
+
 </ul>
-<p>Components and classes:</p>
-<ul>
-<li>DatabaseConnectionManager class creates connection with database using JDBC library components.</li>
-<li>CutomerDao class implemenst DataAccessObject interface. this class consructs SQL queries such as create, update, delete, read and executes them.</li>
-<li>orderDao class implements DataAccessObject interface and constrcuts the SQL query which returns all the orders of a customer and their corresponding salesperson.</li>
-<li>DTO objects are java respresentation of database tables. they are used to pass the data between dao layer and database.</li>
-<li>JDBCExecuter class initializes and runs the program.</li>
-</ul>
+
 <h2 id="enhancements-and-issues">Enhancements and Issues</h2>
 <ul>
 <li>This App can be improved to ask for user requests instead of mannually executing SQL queries.</li>
 </ul>
+
+<h2 id="libraries">Libraries</h2>
+<ul>
+<li>FileWriter</li>
+<li>BufferedWriter</li>
+<li>Postgresql</li>
+</ul>
+
 <h1 id="twitter-cli-app">Twitter CLI App</h1>
 <p>This is a twitter command line app that takes advantage of twitter REST Api to Post, Delete and show tweets.</p>
 <h2 id="usage-1">Usage</h2>
