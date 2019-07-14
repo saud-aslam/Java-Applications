@@ -5,7 +5,7 @@
 <h1 id="java-grep-app">Java Grep App</h1>
 <p>This App searches for a text pattern recursively in a given directory, and output matched lines to a file. The app takes three arguments.</p>
 <h2 id="usage">Usage</h2>
-<pre><code>How To Use:  regex rootPath outFile
+<pre><code>How To Use: JavaGrepImp regex rootPath outFile
 Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 
 </code></pre>
@@ -91,6 +91,7 @@ Description: Delete a list of tweets by id
 Output deleted tweet id and print deleted tweet
 object.
 </code></pre>
+
 <h2 id="design-and-implementation-1">Design and Implementation</h2>
 <p>The archtecture of this program is similar to client server architecture where the Twitter REST API is the server.</p>
 <img src="/diagrams/Twitter.png" alt="Server-host"></p>
