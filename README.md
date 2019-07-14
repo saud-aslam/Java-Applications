@@ -95,13 +95,14 @@ object.
 <p>The archtecture of this program is similar to client server architecture where the Twitter REST API is the server.</p>
 <img src="/diagrams/Twitter.png" alt="Server-host"></p>
 <ul>
-<li><strong>TwitterCLIRunner</strong>initializes the application. It gets the user input and passes it to service layer where all business logic will be checked , after passing the tests the requets would be send to TwitterRestDAo layer with the help of DTO objects. after executing the request, http response will be send back and displayed to user in jason format.</li>
+<li><strong>ApacheHttpHelper</strong>This class handles authorization with the Twitter REST API and make HTTP requests(GET/POST/DELETE) and then get HTTPResponse.</li>
+ <li><strong>TwitterResDao</strong>this class implements CrdRepo interface. This class construct URI which is passed to ApacheHttpHelper class so that HTTP requests can get executed. The response from HTTP comes in this class where its body is parse to see the HTTP response code. Finally the response entity is converted into java object i.e Tweet Object.</li>
+<li><strong>TwitterServiceImp</strong> This class handles all business logic on the user input arguments and validates them and handles tweet object.Finally the cleaned data is pass to DAO layer to be executed on Twitter.com</li>
+ <li><strong>TwitterCLIRunner</strong>Parse user input and calls corresponding service methods</li>
 
-<li><strong>ApacheHttpHelper</strong> class is in the lowest level and implaments HttpHelper interface. This class creates connection with the REST Api, passes the request and receives the the http response.</li>
-<li><strong>TwitterRestDao</strong>calss implements CrdRepository interface. this class constructs the URL passes it to ApacheHttpHelper class, in return it receives the response and validates the http response and converts jason file to java object.</li>
-<li><strong>TwitterServiceImp</strong> class implements TwitterService interface. this class validates user input, creates tweet object in case of posting a tweet and passes it to dao layer.</li>
-<li><strong>TwitterClIApp</strong> class manages the dependencies of the App and starts the application.</li>
-<li><strong>TwitterClIRunner</strong> acccepts user input.</li>
+
+<li><strong>TwitterCLI</strong> This class manages dependencies and pass the arguments to TwitterCLIRunner so that the application is run.</li>
+
 </ul>
 <p>Inaddition to traditional way, dependencies of this app has been managed using spring framework.</p>
 <ol>
