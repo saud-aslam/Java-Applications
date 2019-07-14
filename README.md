@@ -71,7 +71,8 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 <p>This Application allows user to Post, Delete and show Tweets through command line.</p>
 <h2 id="usage-1">Usage</h2>
 <p>Firstly, authorization component should be setup as environmental variables.</p>
-<pre><code>To Post a Tweet: TwitterCLI post "Tweet_text" "latitude:longitude" 
+<pre><code>To Post a Tweet: TwitterCLI post "Tweet_text" "latitude:longitude"
+
 
 Description: Create a tweet with a geotag and
 output the created tweet object(simplifeid version)
@@ -93,13 +94,13 @@ object.
 <h2 id="design-and-implementation-1">Design and Implementation</h2>
 <p>The archtecture of this program is similar to client server architecture where the Twitter REST API is the server.</p>
 <img src="/diagrams/Twitter.png" alt="Server-host"></p>
-<p>TwitterCLIRunner initializes the application. It gets the user input and passes it to service layer where all business logic will be checked , after passing the tests the requets would be send to TwitterRestDAo layer with the help of DTO objects. after executing the request, http response will be send back and displayed to user in jason format.</p>
+<p><strong>TwitterCLIRunner</strong>initializes the application. It gets the user input and passes it to service layer where all business logic will be checked , after passing the tests the requets would be send to TwitterRestDAo layer with the help of DTO objects. after executing the request, http response will be send back and displayed to user in jason format.</p>
 <ul>
-<li>ApacheHttpHelper class is in the lowest level and implaments HttpHelper interface. This class creates connection with the REST Api, passes the request and receives the the http response.</li>
-<li>TwitterRestDao calss implements CrdRepository interface. this class constructs the URL passes it to ApacheHttpHelper class, in return it receives the response and validates the http response and converts jason file to java object.</li>
-<li>TwitterServiceImp class implements TwitterService interface. this class validates user input, creates tweet object in case of posting a tweet and passes it to dao layer.</li>
-<li>TwitterClIApp class manages the dependencies of the App and starts the application.</li>
-<li>TwitterClIRunner acccepts user input.</li>
+<li><strong>ApacheHttpHelper</strong> class is in the lowest level and implaments HttpHelper interface. This class creates connection with the REST Api, passes the request and receives the the http response.</li>
+<li><strong>TwitterRestDao</strong>calss implements CrdRepository interface. this class constructs the URL passes it to ApacheHttpHelper class, in return it receives the response and validates the http response and converts jason file to java object.</li>
+<li><strong>TwitterServiceImp</strong> class implements TwitterService interface. this class validates user input, creates tweet object in case of posting a tweet and passes it to dao layer.</li>
+<li><strong>TwitterClIApp</strong> class manages the dependencies of the App and starts the application.</li>
+<li><strong>TwitterClIRunner</strong> acccepts user input.</li>
 </ul>
 <p>Inaddition to traditional way, dependencies of this app has been managed using spring framework.</p>
 <ol>
