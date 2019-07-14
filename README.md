@@ -78,12 +78,10 @@ output the created tweet object(simplifeid version)
 in JSON format.
 
 </code></pre>
-<pre><code> To show a tweet: TwitterCLI show  Tweet-Id
- 
+<pre><code>To show a tweet: TwitterCLI show  Tweet-Id
+
 Description: Lookup a tweet by ID and print the
 tweet object in JSON format.
- 
-
 </code></pre>
 <pre><code>To delete a Tweet: TwitterCLI delete Tweet-Id1,Tweet-Id2
 
