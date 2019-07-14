@@ -127,7 +127,7 @@ object.
 <ol>
 <li><strong>Spring Bean</strong>:<strong>TwitterCLIBean</strong> class setup or configures different components of the application by using java beans components as its building blocks.</li>
 <li><strong>Spring Annotation</strong>: Rather than explicitly annotating beans, we can create @compnent annonation in the classes which are supposed to be added in dependencies for the application to run in IoC. This is done in  <strong>TwitterCLIComponentScan</strong> class.</li>
-<li><strong>Spring Boot<strong/>:<strong>TwitterCLISpringBoot</strong> class uses spring framework auto configuration mode to manage dependencies automatically without much configurations to be done manually.</li>
+<li><strong>Spring Boot</strong>:<strong>TwitterCLISpringBoot</strong> class uses spring framework auto configuration mode to manage dependencies automatically without much configurations to be done manually.</li>
 </ol>
 <h3 id="test">Test</h3>
 <p>TwitterCli App was tested with Junit test and mockito tets cases.<br>
