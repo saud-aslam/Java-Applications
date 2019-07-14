@@ -52,10 +52,10 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 <p>To connect the Database Storage layer with Java, Client/Server connection is used. The diagram below shows the design of this project.</p>
 <img src="/diagrams/jdbc.png" alt="Server-host"></p>
 <ul>
-<li>DatabaseConnectionManager communicates with Database server through JDBC ie. java.sql library component</li>
-<li>CustomerDAO/OrderDAO are classes which extends DataAccessObject interface. These classes execute the SQL queries, saves the output of the queries and then handles customerDto/orderDto</li>
+<li><strong>DatabaseConnectionManager</strong> communicates with Database server through JDBC ie. java.sql library component</li>
+<li><strong>CustomerDAO/OrderDAO</strong>are classes which extends DataAccessObject interface. These classes execute the SQL queries, saves the output of the queries and then handles customerDto/orderDto</li>
 <li>Dto objects (order/customer) are java representation of database tables. They are manipulated by DAO layer.</li>
-<li>JDBCExecutor has the main method which receives user input, initialized other layer and execute the program. </li>
+<li><strong>JDBCExecutor</strong> has the main method which receives user input, initialized other layer and execute the program. </li>
 
 </ul>
 
