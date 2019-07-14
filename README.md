@@ -71,31 +71,28 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 </ul>
 
 <h1 id="twitter-cli-app">Twitter CLI App</h1>
-<p>This is a twitter command line app that takes advantage of twitter REST Api to Post, Delete and show tweets.</p>
+<p>This Application allows user to Post, Delete and show Tweets through command line.</p>
 <h2 id="usage-1">Usage</h2>
 <p>Firstly, authorization component should be setup as environmental variables.</p>
-<pre><code>To Post a Tweet: post "Tweet_text" latitude longitude 
+<pre><code>To Post a Tweet: TwitterCLI post "Tweet_text" "latitude:longitude" 
+
+Description: Create a tweet with a geotag and
+output the created tweet object(simplifeid version)
+in JSON format.
 
 </code></pre>
-<pre><code> To show a tweet: show  Tweet-Id
+<pre><code> To show a tweet: TwitterCLI show  Tweet-Id
  
- Description: Lookup a tweet by ID and print the
- tweet object in JSON format.
- Arguments:
- 
-&gt; Tweet Id should contain only numbers.
+Description: Lookup a tweet by ID and print the
+tweet object in JSON format.
  
 
 </code></pre>
-<pre><code>To delete a Tweet: delete Tweet-Id
+<pre><code>To delete a Tweet: TwitterCLI delete Tweet-Id1,Tweet-Id2
 
 Description: Delete a list of tweets by id
 Output deleted tweet id and print deleted tweet
 object.
-
-&gt; Tweet Id should be numbers only.
-
-
 </code></pre>
 <h2 id="design-and-implementation-1">Design and Implementation</h2>
 <p>The archtecture of this program is similar to client server architecture where the Twitter REST API is the server.</p>
