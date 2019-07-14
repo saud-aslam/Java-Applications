@@ -44,9 +44,9 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 
 <h2 id="usage1">Usage</h2>
 <ul>
-<li>Create new table : <pre><code>JDBCExector create "ID" "First_Name" "Address"</code></pre></li>
- <li>Find a data base on ID parameter : <pre><code>JDBCExector read "ID" </code></pre></li>
- <li>Create new table : <pre><code>JDBCExector JDBCExector delete "ID"</code></pre></li>
+<li>Create new table : <pre><code>JDBCExecutor create "ID" "First_Name" "Address"</code></pre></li>
+ <li>Find a data base on ID parameter : <pre><code>JDBCExecutor read "ID" </code></pre></li>
+ <li>Create new table : <pre><code>JDBCExector JDBCExecutor delete "ID"</code></pre></li>
  </ul>
 <h2 id="design-and-implementation-1">Design and Implementation</h2>
 <p>To connect the Database Storage layer with Java, Client/Server connection is used. The diagram below shows the design of this project.</p>
@@ -55,13 +55,13 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 <li>DatabaseConnectionManager communicates with Database server through JDBC ie. java.sql library component</li>
 <li>CustomerDAO/OrderDAO are classes which extends DataAccessObject interface. These classes execute the SQL queries, saves the output of the queries and then handles customerDto/orderDto</li>
 <li>Dto objects (order/customer) are java representation of database tables. They are manipulated by DAO layer.</li>
-<li>JDBCExector has the main method which receives user input, initialized other layer and execute the program. </li>
+<li>JDBCExecutor has the main method which receives user input, initialized other layer and execute the program. </li>
 
 </ul>
 
 <h2 id="enhancements-and-issues">Enhancements and Issues</h2>
 <ul>
-<li>This App can be improved to ask for user requests instead of mannually executing SQL queries.</li>
+<li>SQL queries are hardcoded. This can be improved by allowing SQL queries to be entered via CLI.</li>
 </ul>
 
 <h2 id="libraries">Libraries</h2>
