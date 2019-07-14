@@ -22,7 +22,7 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 <li>Scan through all folders of the input directory and search for file path and if found sub directory, invoke listFiles recursively, until pure file path found, and add them to List.</li>
 <li>Scan all lines in a file and output it as a list of string.</li>
 <li>Compare all text in list of String to regex.</li>
- <li>Output matched string to an output file.</li>
+<li>Output matched string to an output file.</li>
 </ul>
 <h2 id="enhancement-and-issues">Enhancement and Issues</h2>
 <ol>
@@ -139,13 +139,11 @@ Mockito was used to create unit test cases for service leyer.</p>
 </ol>
 <h2 id="libraries">Libraries</h2>
 <ul>
-<li>signpost commonHttp4</li>
-<li>jackson databined</li>
-<li>spring-boot-starter-web</li>
+<li>jackson-databind</li>
+<li>signpost-commonHttp4</li>
 <li>commons-dbcp2</li>
 <li>mockito-core</li>
 <li>JUnit</li>
-<li>Postgresql</li>
-<li>spring-boot-maven-plugin</li>
+<li>spring-boot-starter-web</li>
 </ul>
 
