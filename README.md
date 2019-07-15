@@ -59,10 +59,10 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 </ul>
 
 <h2 id="enhancements-and-issues">Enhancements and Issues</h2>
-<ul>
+<ol>
 <li>SQL queries are hardcoded. This can be improved by allowing SQL queries to be entered via CLI.</li>
 <li>Data Cleaning before Update and Insert is not performed. This can be improved by providing a service layer where data cleaning as required by business can be performed.</li>
-</ul>
+</ol>
 
 <h2 id="libraries">Libraries</h2>
 <ul>
