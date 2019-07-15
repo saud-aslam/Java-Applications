@@ -74,14 +74,13 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 
 <h2 id="setup">Initial Setup</h2>
 After creating an application on Twitter Developer account, get access to keys and tokens. Setup those tokens and keys in your local machine's environment variables. For example:
-<pre><code>
-#put the following env var in ~/.bash_profile
+
+<pre><code>#put the following env var in ~/.bash_profile
 export consumerKey=
 export consumerSecret=
 export accessToken=
 export tokenSecret=
 $ source ~/.bash_profile
-
 </code></pre>
 
 
