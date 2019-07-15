@@ -119,8 +119,10 @@ object.
 
 
 <li><strong>TwitterCLI</strong> This class manages dependencies and pass the arguments to TwitterCLIRunner so that the application is run.</li>
-<h2 id="sp">Spring Framework</h2>
 
+<h2 id="test">Test</h2>
+<p>Mockito testing framework was used to perform unit testing on twitter service layer by mocking DAO layer. Dao layer i.e TwitterResDAO module went through Junit tests cases on Create, findbyId and deletebyId methods in the Dao layer.</p>
+<h2 id="sp">Spring Framework</h2>
 </ul>
 <p>Dependencies of different layers within the application is also shown to be managed by Spring Framework. Three different approaches are used namely Spring Bean, Spring Component Scan and Spring Boot.</p>
 <ol>
@@ -128,8 +130,6 @@ object.
 <li><strong>Spring Annotation</strong>: Rather than explicitly annotating beans, we can create @compnent annonation in the classes which are supposed to be added in dependencies for the application to run in IoC. This is done in  <strong>TwitterCLIComponentScan</strong> class.</li>
 <li><strong>Spring Boot</strong>:<strong>TwitterCLISpringBoot</strong> class uses spring framework auto configuration mode to manage dependencies automatically without much configurations to be done manually.</li>
 </ol>
-<h3 id="test">Test</h3>
-<p>Mockito testing framework was used to perform unit testing on twitter service layer by mocking DAO layer. Dao layer i.e TwitterResDAO module went through Junit tests cases on Create, findbyId and deletebyId methods in the Dao layer.</p>
 <h2 id="enhancement-and-issues-1">Enhancement and Issues</h2>
 <ol>
 <li>Search by ID and Delete by ID can be cumbersome, rather possible improvement could be to get a list of all tweets maybe by searching hashtags or text and then delete them with interactive mode. </li>
