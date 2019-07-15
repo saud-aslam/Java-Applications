@@ -17,7 +17,7 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 
 <h2 id="design-and-implementation">Design and Implementation</h2>
 <p><strong>JavaGrep:</strong>  is an interface where abstraction of method used in JavaGrepApp is provided.<br>
-<strong>JavaGrepApp:</strong>  In this class, main method is called in which the arguments are intially set into JavaGrepImp's object and then the method <strong>process</strong> is called. This method then calls other method such as listFiles, readLines, containsPattern and writeToFile. The pseudocode is as follows:</p>
+<strong>JavaGrepImp:</strong>  In this class, main method is called in which the arguments are intially set into JavaGrepImp's object and then the method <strong>process</strong> is called. This method then calls other method such as listFiles, readLines, containsPattern and writeToFile. The pseudocode is as follows:</p>
 <ul>
 <li>Scan through all folders of the input directory and search for file path and if found sub directory, invoke listFiles recursively, until pure file path found, and add them to List.</li>
 <li>Scan all lines in a file and output it as a list of string.</li>
@@ -51,8 +51,8 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 <p>To connect the Database Storage layer with Java, Client/Server connection is used. The diagram below shows the design of this project.</p>
 <img src="/diagrams/jdbc.png" alt="Server-host"></p>
 <ul>
-<li><strong>DatabaseConnectionManager</strong> communicates with Database server through JDBC ie. java.sql library component</li>
-<li><strong>CustomerDAO/OrderDAO</strong>are classes which extends DataAccessObject interface. These classes execute the SQL queries, saves the output of the queries and then handles customerDto/orderDto</li>
+<li><strong>DatabaseConnectionManager</strong> communicates with Database server through JDBC i.e. java.sql library components.</li>
+<li><strong>CustomerDAO/OrderDAO</strong> are classes which extends DataAccessObject interface. These classes execute the SQL queries, saves the output of the queries and then handles customerDto/orderDto</li>
 <li>Dto objects (order/customer) are java representation of database tables. They are manipulated by DAO layer.</li>
 <li><strong>JDBCExecutor</strong> has the main method which receives user input, initialized other layer and execute the program. </li>
 
@@ -73,7 +73,7 @@ Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
 <p>This Application allows user to Post, Delete and show Tweets through command line.</p>
 
 <h2 id="setup">Initial Setup</h2>
-After creating an application on Twitter Developer account, get access to keys and tokens. Setup those tokens and keys in your local machine environment variables. For example:
+After creating an application on Twitter Developer account, get access to keys and tokens. Setup those tokens and keys in your local machine's environment variables. For example:
 <pre><code>
 #put the following env var in ~/.bash_profile
 export consumerKey=
@@ -91,19 +91,17 @@ $ source ~/.bash_profile
 
 <pre><code>To Post a Tweet: TwitterCLI post "Tweet_text" "latitude:longitude"
 
-
 Description: Create a tweet with a geotag and
 output the created tweet object(simplifeid version)
 in JSON format.
-
 </code></pre>
-
 
 <pre><code>To show a tweet: TwitterCLI show  Tweet-Id
 
 Description: Lookup a tweet by ID and print the
 tweet object in JSON format.
 </code></pre>
+
 <pre><code>To delete a Tweet: TwitterCLI delete Tweet-Id1,Tweet-Id2
 
 Description: Delete a list of tweets by id
