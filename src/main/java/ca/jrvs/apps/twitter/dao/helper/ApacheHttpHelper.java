@@ -22,10 +22,10 @@ public class ApacheHttpHelper implements HttpHelper {
     //Constructor
     public ApacheHttpHelper() {
 
-        String CONSUMER_KEY = "VSeCzfp09iTHhJ98A6dF7M8Le";
-        String CONSUMER_SECRET = "wn8Pc1LiIhHgMrppig2Ss1pUPymoWgcsVbSLD9VekacJPmkiSc";
-        String ACCESS_TOKEN = "1146467744860295169-ww5eOZYcJDMc2vltKSigrCxueLJPwq";
-        String TOKEN_SECRET = "H1yqIDLq5T4RuglvJqovRRupiKM8JSWl20Q6RwMLfxBad";
+       String CONSUMER_KEY = System.getenv("consumerKey");
+       String CONSUMER_SECRET = System.getenv("consumerSecret");
+       String ACCESS_TOKEN = System.getenv("accessToken");
+       String TOKEN_SECRET = System.getenv("tokenSecret");
 
         consumer = new CommonsHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
         consumer.setTokenWithSecret(ACCESS_TOKEN, TOKEN_SECRET);
