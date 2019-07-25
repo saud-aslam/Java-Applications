@@ -1,11 +1,11 @@
 package ca.jrvs.apps.twitter;
 
-import ca.jrvs.apps.twitter.Service.TwitterService;
-import ca.jrvs.apps.twitter.Service.TwitterServiceImp;
 import ca.jrvs.apps.twitter.dao.CrdRepo;
 import ca.jrvs.apps.twitter.dao.TwitterResDao;
 import ca.jrvs.apps.twitter.dao.helper.ApacheHttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
+import ca.jrvs.apps.twitter.service.TwitterService;
+import ca.jrvs.apps.twitter.service.TwitterServiceImp;
 
 public class TwitterCLI {
 
@@ -18,6 +18,5 @@ public class TwitterCLI {
         runner.run(args);
 
     }
-
 
 }

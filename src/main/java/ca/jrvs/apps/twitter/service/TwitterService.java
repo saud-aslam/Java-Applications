@@ -1,4 +1,4 @@
-package ca.jrvs.apps.twitter.Service;
+package ca.jrvs.apps.twitter.service;
 
 import ca.jrvs.apps.twitter.dto.Tweet;
 

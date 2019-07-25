@@ -1,23 +1,32 @@
-package ca.jrvs.apps.twitter.Service;
+package ca.jrvs.apps.twitter.service;
 
 import ca.jrvs.apps.twitter.dao.CrdRepo;
 import ca.jrvs.apps.twitter.dto.Tweet;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-public class TwitterServiceImpTest {
+@RunWith(MockitoJUnitRunner.class)
+public class TwitterServiceImpTest2 {
+
+    @Mock
+    private CrdRepo mockDao;
+
+    @InjectMocks
+    private TwitterServiceImp service;
 
     @Test
     public void postTweet() {
-        CrdRepo Mockdao = Mockito.mock(CrdRepo.class);
-        TwitterService service = new TwitterServiceImp(Mockdao);
+
         Tweet mockTweet = new Tweet();
         mockTweet.setText("Mock Tweet");
-        when(Mockdao.create(any())).thenReturn(mockTweet);
+        when(mockDao.create(any())).thenReturn(mockTweet);
         service.postTweet("Random Tweet", 0.0, 0.0);
 
         try {

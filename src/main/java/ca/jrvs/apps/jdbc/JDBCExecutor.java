@@ -8,7 +8,6 @@ public class JDBCExecutor {
     public static void main(String... args) {
         DataConnectionManager dcm = new DataConnectionManager("localhost",
                 "hplussport", "postgres", "password");
-
         try {
 
             Connection connection = dcm.getConnection();
