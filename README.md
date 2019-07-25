@@ -45,8 +45,8 @@ object.
 <p>The archtecture of this program is similar to client server architecture where the Twitter REST API is the server.</p>
 <img src="/diagrams/Twitter.png" alt="Server-host"></p>
 <ul>
-<li><strong>ApacheHttpHelper</strong>This class handles authorization with the Twitter REST API and make HTTP requests(GET/POST/DELETE) and then get HTTPResponse.</li>
- <li><strong>TwitterResDao</strong>this class implements CrdRepo interface. This class construct URI which is passed to ApacheHttpHelper class so that HTTP requests can get executed. The response from HTTP comes in this class where its body is parse to see the HTTP response code. Finally the response entity is converted into java object i.e Tweet Object.</li>
+<li><strong>ApacheHttpHelper</strong> This class handles authorization with the Twitter REST API and make HTTP requests(GET/POST/DELETE) and then get HTTPResponse.</li>
+ <li><strong>TwitterResDao</strong> this class implements CrdRepo interface. This class construct URI which is passed to ApacheHttpHelper class so that HTTP requests can get executed. The response from HTTP comes in this class where its body is parse to see the HTTP response code. Finally the response entity is converted into java object i.e Tweet Object.</li>
 <li><strong>TwitterServiceImp</strong> This class handles all business logic on the user input arguments and validates them and handles tweet object.Finally the cleaned data is pass to DAO layer to be executed on Twitter.com</li>
  <li><strong>TwitterCLIRunner</strong>Parse user input and calls corresponding service methods</li>
 
