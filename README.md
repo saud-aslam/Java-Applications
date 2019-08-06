@@ -1,149 +1,102 @@
+---
 
+
+---
 
 <h1 id="introduction">Introduction</h1>
-<p>This repository includes three Java applications namely Twitter CLI App, Java Grep App and JDBC App. </p>
-<h1 id="twitter-cli-app">Twitter CLI App</h1>
-<p>This Application allows user to Post, Delete and show Tweets through command line.</p>
-
-<h2 id="setup">Initial Setup</h2>
-After creating an application on Twitter Developer account, get access to keys and tokens. Setup those tokens and keys in your local machine's environment variables. For example:
-
+<p>This trading application is an online stock trading simulation REST API which can be used to create an account which would allow account holder to buy and sell stocks from Investor Exchange i.e IEX. Traders can withdraw money and/or deposit money into their account. They can also view latest quotes of any stock directly from this application.</p>
+<p>This REST API can be used by front-end developers, mobile-app developers, and traders.</p>
+<p>The architecture used here is based on microservices concept which is implemented using SpringBoot, IEX API and PSQL database.</p>
+<h1 id="quick-start">Quick Start</h1>
+<p>CentOS 7, Docker and Java are to be installed prior to use this REST API.</p>
+<h2 id="initial-setup">Initial Setup</h2>
+<p>Create an account on <a href="https://iexcloud.io/">https://iexcloud.io</a>  and get your iex_public_token</p>
 <pre><code>#put the following env var in ~/.bash_profile
-export consumerKey=
-export consumerSecret=
-export accessToken=
-export tokenSecret=
+export IEX_PUB_TOKEN='your_iex_pub_key'
+export PSQL_PASSWORD="your password" 
+export PSQL_USER=" psql user" 
+export PSQL_HOST="psql host"
 $ source ~/.bash_profile
 </code></pre>
-
-
-
-
-<h2 id="usage-1">Usage</h2>
-
-<pre><code>To Post a Tweet: TwitterCLI post "Tweet_text" "latitude:longitude"
-
-Description: Create a tweet with a geotag and
-output the created tweet object(simplifeid version)
-in JSON format.
-</code></pre>
-
-<pre><code>To show a tweet: TwitterCLI show  Tweet-Id
-
-Description: Lookup a tweet by ID and print the
-tweet object in JSON format.
-</code></pre>
-
-<pre><code>To delete a Tweet: TwitterCLI delete Tweet-Id1,Tweet-Id2
-
-Description: Delete a list of tweets by id
-Output deleted tweet id and print deleted tweet
-object.
-</code></pre>
-
-<h2 id="design-and-implementation-1">Design and Implementation</h2>
-<p>The archtecture of this program is similar to client server architecture where the Twitter REST API is the server.</p>
-<img src="/diagrams/Twitter.png" alt="Server-host"></p>
-<ul>
-<li><strong>ApacheHttpHelper</strong> This class handles authorization with the Twitter REST API and make HTTP requests(GET/POST/DELETE) and then get HTTPResponse.</li>
- <li><strong>TwitterResDao</strong> this class implements CrdRepo interface. This class construct URI which is passed to ApacheHttpHelper class so that HTTP requests can get executed. The response from HTTP comes in this class where its body is parse to see the HTTP response code. Finally the response entity is converted into java object i.e Tweet Object.</li>
-<li><strong>TwitterServiceImp</strong> This class handles all business logic on the user input arguments and validates them and handles tweet object.Finally the cleaned data is pass to DAO layer to be executed on Twitter.com</li>
- <li><strong>TwitterCLIRunner</strong> Parse user input and calls corresponding service methods</li>
-
-
-<li><strong>TwitterCLI</strong> This class manages dependencies and pass the arguments to TwitterCLIRunner so that the application is run.</li>
-
-<h2 id="test">Test</h2>
-<p>Mockito testing framework was used to perform unit testing on twitter service layer by mocking DAO layer. Dao layer i.e TwitterResDAO module went through Junit tests cases on Create, findbyId and deletebyId methods in the Dao layer.</p>
-<h2 id="sp">Spring Framework</h2>
-</ul>
-<p>Dependencies of different layers within the application is also shown to be managed by Spring Framework. Three different approaches are used namely Spring Bean, Spring Component Scan and Spring Boot.</p>
-<ol>
-<li><strong>Spring Bean</strong>:<strong>TwitterCLIBean</strong> class setup or configures different components of the application by using java beans components as its building blocks.</li>
-<li><strong>Spring Annotation</strong>: Rather than explicitly annotating beans, we can create @compnent annonation in the classes which are supposed to be added in dependencies for the application to run in IoC. This is done in  <strong>TwitterCLIComponentScan</strong> class.</li>
-<li><strong>Spring Boot</strong>:<strong>TwitterCLISpringBoot</strong> class uses spring framework auto configuration mode to manage dependencies automatically without much configurations to be done manually.</li>
-</ol>
-<h2 id="enhancement-and-issues-1">Enhancement and Issues</h2>
-<ol>
-<li>Search by ID and Delete by ID can be cumbersome, rather possible improvement could be to get a list of all tweets maybe by searching hashtags or text and then delete them with interactive mode. </li>
- <li>Posting is only with text now, but can add links, images and videos.</li>
- <li>Prompt the user, if the access tokens are not formatted or invalid.</li>
-</ol>
-<h2 id="libraries">Libraries</h2>
-<ul>
-<li>jackson-databind</li>
-<li>signpost-commonHttp4</li>
-<li>commons-dbcp2</li>
-<li>mockito-core</li>
-<li>JUnit</li>
-<li>spring-boot-starter-web</li>
-</ul>
-
-
-<h1 id="java-grep-app">Java Grep App</h1>
-<p>This App searches for a text pattern recursively in a given directory, and output matched lines to a file. The app takes three arguments.</p>
 <h2 id="usage">Usage</h2>
-<pre><code>How To Use: JavaGrepImp regex rootPath outFile
-Example : JavaGrepImp .*data.* home/centos/dev /tmp/grep.out
-
-</code></pre>
-<ul>
-<li>regex: a string on which search would be performed</li>
-<li>rootpath: path of the directory</li>
-<li>outFile: path and name of output file where output search result would be stored</li>
-</ul>
-
-<h2 id="design-and-implementation">Design and Implementation</h2>
-<p><strong>JavaGrep:</strong>  is an interface where abstraction of method used in JavaGrepApp is provided.<br>
-<strong>JavaGrepImp:</strong>  In this class, main method is called in which the arguments are intially set into JavaGrepImp's object and then the method <strong>process</strong> is called. This method then calls other method such as listFiles, readLines, containsPattern and writeToFile. The pseudocode is as follows:</p>
-<ul>
-<li>Scan through all folders of the input directory and search for file path and if found sub directory, invoke listFiles recursively, until pure file path found, and add them to List.</li>
-<li>Scan all lines in a file and output it as a list of string.</li>
-<li>Compare all text in list of String to regex.</li>
-<li>Output matched string to an output file.</li>
-</ul>
-<h2 id="enhancement-and-issues">Enhancement and Issues</h2>
 <ol>
-<li>readLines saves the entire content of every file in memory which means that large files would be entirely written in memory. Improvement could be to simultenously read and match regex and only store matched lines in memory or directly append it into output file.</li>
-<li>Multiple regex patterns not supported now. Could be added in later versions.</li>
- <li>Every file in input directory is scanned. Maybe add a filter to escape few formats e.g filter to not scan .xml files.</li>
+<li>Start docker<br>
+<code>sudo systemctl start docker</code></li>
+<li>Download the source code.<br>
+<code>https://github.com/saud-aslam/trading-app.git</code></li>
+<li>Build trading app<br>
+<code>sudo docker build -t trading-app .</code></li>
+<li>Build psql image<br>
+<code>cd psql/</code><br>
+<code>sudo docker build -t jrvs-psql .</code></li>
+<li>Initialize PostgreSQL and start SpringBoot application via <code>bash start_up.sh PSQL_HOST PSQL_USER PSQL_PASSWORD</code></li>
+<li>Consume the API through your browser by: <code>http://localhost:8080/swagger-ui.html</code></li>
 </ol>
-
-<h2 id="libraries">Libraries</h2>
+<h2 id="rest-api-usage">REST API usage</h2>
+<h3 id="swagger">Swagger</h3>
+<p>Swagger is an open-source software framework backed by a large ecosystem of tools that helps developers design, build, document, and consume RESTful web services. By visualizing the endpoints of the program, it allows user to access function and execute them with the help of interactive GUI.</p>
+<h3 id="qoute-controller">Qoute Controller</h3>
+<p>Through this endpoint, IEX quotes are accessed through sending HTTP requests to the IEXCloud.</p>
 <ul>
-<li>FileWriter</li>
-<li>BufferedWriter</li>
-<li>PrintWriter</li>
+<li><code>GET '/quote/dailyList'</code>  - List all quotes securities already in the database.</li>
+<li><code>GET '/quote/iex/ticker/{ticker}</code> : Input IEX symbol and shows IEX market data’s quotes information.</li>
+<li><code>POST '/quote/ticker/{ticker}</code>  - Adds a new ticker to the Quote database</li>
+<li><code>PUT '/quote/</code>  - Allows user to manually insert quote data.</li>
+<li><code>PUT '/quote/iexMarketData'</code>  - Updates all quotes which are in database.</li>
 </ul>
-
-<h1 id="jdbc-app">JDBC App</h1>
-<p>This App helps the user to perform CRUD (Create, Read, Update and Delete) operations in PostgreSQL database.</p>
-
-<h2 id="usage1">Usage</h2>
+<h3 id="trader-controller">Trader Controller</h3>
+<p>Provides trader to add or withdraw amount from his account. New account can be created or old one can be deleted.</p>
 <ul>
-<li>Create new table : <pre><code>JDBCExecutor create "ID" "First_Name" "Address"</code></pre></li>
- <li>Find a data base on ID parameter : <pre><code>JDBCExecutor read "ID" </code></pre></li>
- <li>Create new table : <pre><code>JDBCExecutor delete "ID"</code></pre></li>
- </ul>
-<h2 id="design-and-implementation-1">Design and Implementation</h2>
-<p>To connect the Database Storage layer with Java, Client/Server connection is used. The diagram below shows the design of this project.</p>
-<img src="/diagrams/jdbc.png" alt="Server-host"></p>
-<ul>
-<li><strong>DatabaseConnectionManager</strong> communicates with Database server through JDBC i.e. java.sql library components.</li>
-<li><strong>CustomerDAO/OrderDAO</strong> are classes which extends DataAccessObject interface. These classes execute the SQL queries, saves the output of the queries and then handles customerDto/orderDto</li>
-<li>Dto objects (order/customer) are java representation of database tables. They are manipulated by DAO layer.</li>
-<li><strong>JDBCExecutor</strong> has the main method which receives user input, initialized other layer and execute the program. </li>
-
+<li><code>DELETE '/trader/traderId/{traderId}'</code>  - Delete a trader with trader id provided that the trader has no account balance and no security in his account.</li>
+<li><code>POST '/trader/</code>  - Creates a trader with specified given details</li>
+<li><code>PUT '/trader/deposit/traderId/{traderId}/amount/{amount}</code>  - Adds amount to trader’s account balance</li>
+<li><code>PUT '/trader/withdraw/traderId/{traderId}/amount/{amount}</code>  - Deduct amount from trader’s account balance</li>
 </ul>
-
-<h2 id="enhancements-and-issues">Enhancements and Issues</h2>
-<ol>
-<li>SQL queries are hardcoded. This can be improved by allowing SQL queries to be entered via CLI.</li>
-<li>Data Cleaning before Update and Insert is not performed. This can be improved by providing a service layer where data cleaning as required by business can be performed.</li>
-</ol>
-
-<h2 id="libraries">Libraries</h2>
+<h3 id="order-controller">Order Controller</h3>
+<p>A trader can buy or sell a stock by using this endpoint.</p>
 <ul>
-<li>Postgresql</li>
+<li><code>POST '/order/marketOrder'</code>  - Based on the input size, buying or selling of stock takes place. It the size is positive and account have enough money, then buying will get executed and if the size is negative and account has enough securities, then selling will occur.</li>
+</ul>
+<h3 id="dashboard-controller">Dashboard Controller</h3>
+<p>Shows trader his account and securties details.</p>
+<ul>
+<li><code>GET '/dashboard/portfolio/traderId/{traderId}'</code>  -Gives the quotes and position of all the securities which the trader have.</li>
+<li><code>GET '/dashboard/profile/traderId/{traderId}'</code>  - Shows the Trader and Account data from the database of the given trader_id.</li>
+</ul>
+<h3 id="app-controller">App Controller</h3>
+<ul>
+<li><code>GET '/health'</code>  to see whether the SprinBoot app is running.</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<ul>
+<li>
+<p>Draw a component diagram which contains controller, service, DAO, storage layers (you can mimic the diagram from the guide)</p>
+</li>
+<li>
+<p><strong>Controller</strong>  - This layer is what the user interact with. Together with Swagger UI, the function of this layer is to invoke the service layer (in most cases) based on the input from the user. The request is translated and the response is retrieved back to this layer where it is shown to user in JSON format.</p>
+</li>
+<li>
+<p><strong>Service</strong>  - This layer performs business logic and interacts with DAO layer. For example, validity of incoming Trader account details would be performed here before it being sent to TraderDao to be saved in the database.</p>
+</li>
+<li>
+<p><strong>DAO</strong>  - This layer performs the create, read, update, and delete actions on the database.</p>
+</li>
+<li>
+<p><strong>SpringBoot</strong>:</p>
+</li>
+<li>
+<p><strong>PSQL Database</strong>  - This is the database used to store our data in the tables and views which would be persisted here. The data can always be retrieved back whenever we want to.</p>
+</li>
+<li>
+<p><strong>IEX</strong>  - IEX provides us REST API  which we used to obtain stock information. By sending HTTP request to it, we get a response, which is parsed accrding to the needs.</p>
+</li>
+</ul>
+<h2 id="improvements">Improvements</h2>
+<ul>
+<li>We have assumed that trader and account has one-one to relation. This can be improved by allowing trader to have multiple accounts.</li>
+<li>Auto-increament ids once deleted can not be re-used. In some cases, it can be re-used in future implementation.</li>
+<li>Auto-updation of dailylist is possible and can be implemented in future.</li>
+<li>Email/sms alert can be set e.g when the price of specific security is changed.</li>
+<li>Once the market is closed, a trader can not trade in stocks. This can be improved by saving the quote  just before the market closes and used that to allow trader to trade and immediately execute their request when the market re-opens.</li>
 </ul>
 
